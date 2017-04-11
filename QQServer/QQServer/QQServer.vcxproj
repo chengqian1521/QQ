@@ -73,6 +73,7 @@
     <ClInclude Include="src\util.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\common.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\QQServer.cpp" />
     <ClCompile Include="src\QQUser.cpp" />

@@ -2,16 +2,15 @@
 #define COMMON_H
 #define QQDEBUG
 
-
 #define netService (NetService::getInstance())
 #pragma execution_character_set("utf-8")
 #define FriendItemFixedHeight  50
 
 
 #define HEAD_LEN 4
-#define BODYBUF 1024
+#define BODYBUF  0
 #define MESSAGE_MAIN_LEN ((int)((msg_t*)0)->body)
-#define MSGBODYBUF 64*256
+
 enum MessageType {
 	/*common*/
 	SEND,

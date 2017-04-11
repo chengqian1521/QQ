@@ -233,8 +233,10 @@ int QQServer::recvCompletMessage(int st)
 
     msg->size = msg_len;
 
-    std::cout<<"recv a new message:type="<<msg->type<<" size="<<msg->size<<"  src="<<msg->src<<"   dest="<<msg->dest
-            <<std::endl;
+#ifdef QQDEBUG
+	std::cout << "revc a message:";
+	printMsg(msg);
+#endif
 
     switch (msg->type)
     {
@@ -259,8 +261,8 @@ int QQServer::sendCompletMessage(int target_fd, const msg_t *msg)
     int ret=write_fix_n(target_fd,(void*)msg,msg->size);
 
 #ifdef QQDEBUG
-    std::cout<<"send a  message:size="<<msg->size<<"  type="<<msg->type<<"  src="<<msg->src<<"   dest="<<msg->dest
-            <<"  "<<std::endl;
+	std::cout << "send a message:";
+	printMsg(msg);
 #endif
     if(ret == -1)
         return -1;

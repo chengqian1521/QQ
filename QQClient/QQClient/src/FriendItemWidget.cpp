@@ -22,5 +22,5 @@ FriendItemWidget::FriendItemWidget(const QQUser& user):_user(user)
 
 
 FriendItemWidget::~FriendItemWidget()
-{
+{ 
 }

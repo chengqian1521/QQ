@@ -8,16 +8,15 @@
 #define MaxConnectCount 1024
 
 #define HEAD_LEN 4
-#define BODYBUF 1024
+#define BODYBUF  0
 #define MESSAGE_MAIN_LEN static_cast<int>((char*)((msg_t*)0)->body-(char*)0)
-#define MSGBODYBUF 64*256
+
 enum MessageType {
     /*common*/
     SEND,
 
 
     /*client to server*/
-
     LOGIN,
     REGISTER,
 
@@ -38,5 +37,7 @@ struct msg_t
     char head[HEAD_LEN];
     char body[BODYBUF];
 };
+
+void printMsg(const msg_t *msg);
 
 #endif // COMMON_H
