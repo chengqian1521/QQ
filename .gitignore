@@ -1,0 +1,14 @@
+QQClient/QQClient.VC.db
+QQClient/QQClient.VC.VC.opendb
+QQClient/QQClient/Debug/*
+QQClient/QQClient/Debug/
+QQServer/QQServer.VC.db
+QQServer/.vs/QQServer/v15/Browse.VC.db
+QQServer/.vs/QQServer/v15/Browse.VC.opendb
+QQClient/.vs/QQClient/v14/.suo
+QQClient/.vs/*
+QQClient/QQClient/GeneratedFiles/
+QQClient/QQClient/Release/
+QQClient/Win32/
+QQServer/QQServer/obj/
+QQServer/.vs/

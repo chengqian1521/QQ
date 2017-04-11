@@ -1,0 +1,87 @@
+#define HEAD_LEN 4
+#define BODYBUF 1024
+#define MESSAGE_MAIN_LEN ((int)&((msg_t*)0)->body)
+#define MSGBODYBUF 64*256
+enum MessageType {
+	/*common*/
+	SEND,
+
+
+	/*client to server*/
+
+	LOGIN,
+	REGISTER,
+
+	/*server to client*/
+	LOGIN_RES,
+	REGISTER_RES,
+	UPDATE_STUSTAS,
+	SYSTEM,
+};
+
+struct msg_t
+{
+	int size; //接下来包的大小
+	MessageType type;
+	int src;
+	int dest;
+	char head[HEAD_LEN];
+	char body[BODYBUF];
+};
+
+---------------------------------
+client to server消息说明：
+
+REGISTER：注册消息
+
+    src为发送者
+    body中为 密码;昵称，中间用;分开
+
+LOGIN：登录消息
+
+    src:登陆用户qq
+    body：登录密码(字符)
+
+SEND: 发送消息
+    src为发送着
+    dest为目的地
+
+    head中保存了消息的长度
+    body为消息内容
+
+-------------------------
+server端消息说明
+SEND  转发来自客户端的消息
+    src为发送着
+    dest为目的地
+
+    head中保存了消息的长度
+    body为消息内容
+
+
+UPDATE_STUSTAS 更新用户状态消息定义
+    head的四个字节用于表示当前在线人数，
+    body中的每64个字节表示一个用户的信息
+	   前四个字节表示qq号，后四个字节表示用户昵称
+
+
+2、sys系统消息
+head[0] = 2:系统消息(整数)
+head[1] :（整数）0无法识别的消息，1无效userid，2无效密码, 3userid已经登录,4其他
+head[2] :暂时保留
+head[3] :暂时保留
+body[1024]：空，暂时保留
+
+REGISTER_RES：注册结果
+head[0]
+     1 ---- ok
+    -1 ---- err
+     1 ---- qq已存在
+
+LOGIN_RES   : 登陆结果
+src 0
+dest 登录者qq
+head[0]  0，登陆成功  1，用户名不存在  2，密码错误,3.服务器在线人数过多，暂时不能登录。  -1，服务器出错
+body[0]  登陆成功后，第一个64字节位自己名字，
+	 后面每64字节是一个在线用户的信息，前4个字节为QQ号，后60个字节为用户名
+

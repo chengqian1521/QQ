@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ip-config>
+    <ip>192.168.1.160</ip>
+    <port>12345</port>
+</ip-config>
